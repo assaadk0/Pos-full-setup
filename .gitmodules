@@ -1,0 +1,3 @@
+[submodule "Serial2KeyboardServiceCS"]
+	path = Serial2KeyboardServiceCS
+	url = ./Serial2KeyboardServiceCS
