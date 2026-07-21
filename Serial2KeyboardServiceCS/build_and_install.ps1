@@ -42,10 +42,10 @@ if (Get-Service -Name $serviceName -ErrorAction SilentlyContinue) {
 
 # Register the service
 Write-Host "Registering Windows Service..."
-& sc.exe create $serviceName binPath= "\`"$outputExe\`"" start= auto | Out-Null
-
-if (-not $?) {
-    Write-Error "Failed to register service."
+try {
+    New-Service -Name $serviceName -BinaryPathName "`"$outputExe`"" -StartupType Automatic -ErrorAction Stop | Out-Null
+} catch {
+    Write-Error "Failed to register service: $_"
     Exit 1
 }
 
