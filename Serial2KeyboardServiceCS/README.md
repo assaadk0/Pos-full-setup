@@ -13,29 +13,34 @@ This solution is fully compatible with **Windows 7, 8, 10, and 11** out of the b
 *   `config.ini` — Configuration file to customize the COM port baud rate (defaults to 9600).
 *   `build_and_install.ps1` — PowerShell script to compile the source code and install it as an automatic Windows service.
 *   `uninstall.ps1` — PowerShell script to cleanly stop and delete the service.
+*   `setup.bat` — Easiest method: double-click this file to request Admin privileges and automatically install the service.
+*   `uninstall.bat` — Double-click this file to request Admin privileges and automatically stop and remove the service.
 
 ---
 
 ## Installation Steps
 
-Follow these steps to install the service on a POS terminal:
+There are two ways to install the service on a POS terminal:
 
-### 1. Open PowerShell as Administrator
-Right-click on the Windows Start menu (or search for **PowerShell**), and select **Run as Administrator**.
+### Method A: Double-Click Installer (Recommended)
+1. Navigate to the folder in File Explorer.
+2. Double-click the **`setup.bat`** file.
+3. Windows will prompt a User Account Control (UAC) dialog. Click **Yes** to grant administrator privileges.
+4. A console window will open, automatically compile the C# file, and install/start the Windows Service.
+5. Once complete, press any key to close the console window.
 
-### 2. Navigate to the Folder
-Navigate to the directory containing these scripts:
-```powershell
-cd "C:\Users\user\Desktop\serge\fda\Pos-full-setup\Serial2KeyboardServiceCS"
-```
+### Method B: Manual PowerShell Installation (Alternative)
+1. Open **PowerShell as Administrator** (search for PowerShell in Start, right-click, and select "Run as Administrator").
+2. Navigate to the directory where you extracted/downloaded the files:
+   ```powershell
+   cd "C:\path\to\Serial2KeyboardServiceCS"
+   ```
+3. Execute the installation script:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\build_and_install.ps1
+   ```
 
-### 3. Run the Installation Script
-Run the installation script. If your system restricts running scripts, bypass it using the `-ExecutionPolicy` flag:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\build_and_install.ps1
-```
-
-**What the script does:**
+**What the installation process does:**
 1. Calls the built-in Windows C# compiler (`csc.exe`) to compile `Serial2KeyboardService.cs` into `Serial2KeyboardService.exe`.
 2. Registers `Serial2KeyboardService.exe` as a native Windows service named `Serial2KeyboardService`.
 3. Configures the service startup type to **Automatic** (so it starts on boot).
@@ -76,13 +81,20 @@ Once installed, you can verify that everything is running correctly:
 
 To cleanly stop the service and delete it from the system:
 
-1.  Open **PowerShell as Administrator**.
-2.  Navigate to the folder and run:
+### Method A: Double-Click Uninstaller (Recommended)
+1. Navigate to the folder in File Explorer.
+2. Double-click the **`uninstall.bat`** file.
+3. Windows will prompt a User Account Control (UAC) dialog. Click **Yes** to grant administrator privileges.
+4. Once complete, press any key to close the window.
+
+### Method B: Manual PowerShell Uninstallation (Alternative)
+1. Open **PowerShell as Administrator**.
+2. Navigate to the folder and run:
     ```powershell
     powershell -ExecutionPolicy Bypass -File .\uninstall.ps1
     ```
 
-**What the uninstall script does:**
-1.  Stops the background service.
-2.  Deletes the service registration from the Windows Service Control Manager.
-3.  Terminates any active `Serial2KeyboardService.exe` processes running in the user session.
+**What the uninstallation process does:**
+1. Stops the background service.
+2. Deletes the service registration from the Windows Service Control Manager.
+3. Terminates any active `Serial2KeyboardService.exe` processes running in the user session.
