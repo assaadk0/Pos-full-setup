@@ -1,0 +1,243 @@
+;
+;	Printer Installation File
+;
+;	 List of supported printers, manufacturers
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%NCR%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+CatalogFile=NCRPOSPrinter.cat
+DriverVer=01/31/2013,1.0.0.1
+
+[ClassInstall32.ntx86.5.1]
+AddReg=printer_class_addreg
+
+[ClassInstall32.ntamd64.5.1]
+AddReg=printer_class_addreg
+
+[printer_class_addreg]
+HKR,,,,%PrinterClassName%
+HKR,,Icon,,"-4"
+HKR,,Installer32,,"ntprint.dll,ClassInstall32"
+HKR,,NoDisplayClass,,1
+HKR,,EnumPropPages32,,"printui.dll,PrinterPropPageProvider"
+
+;
+; Manufacturer section.
+;
+; This section lists all of the manufacturers
+; that we will display in the Dialog box
+;
+
+[Manufacturer]
+%NCR% = "NCR Corporation",NTamd64
+
+;
+; Model Specifications Section
+;
+
+[NCR Corporation]
+"NCR K590 Self-Service" = K590.GPD,USBPRINT\NCRK590_Self-Service9E60,NCR_K590_Self-Service
+"NCR 7167 Receipt" = 7167R.GPD,USBPRINT\NCR_7167_Receipt_-_SA848,NCR_7167_Receipt
+"NCR 7167 Slip" = 7167S.GPD,USBPRINT\NCR_7167_Slip_-_SA848,NCR_7167_Slip
+"NCR 7168 Receipt" = 7168R.GPD,USBPRINT\NCR_7168_Receipt_-_SDEAB,NCR_7168_Receipt
+"NCR 7168 Slip" = 7168S.GPD,USBPRINT\NCR_7168_Slip_-_SDEAB,NCR_7168_Slip
+"NCR 7197 Receipt" = 7197.GPD,USBPRINT\NCR_7197_Receipt8C2B,NCR_7197_Receipt
+"NCR F306 Receipt" = F306.GPD,USBPRINT\NCR_F306_Receipt5D40,NCR_F306_Receipt
+"NCR F307 Receipt" = F307.GPD,USBPRINT\NCR_F307_Receipt474D,NCR_F307_Receipt
+"NCR F309 Receipt" = F309.GPD,USBPRINT\NCR_F309_2ST_ReceiptDAAF,NCR_F309_Receipt
+"NCR 7198 Receipt" = 7198R.GPD,USBPRINT\NCR_7198_2ST_Receipt44D9,NCR_7198_Receipt
+"NCR 7198xx4x Label Receipt" = 7198xx4xLR.GPD,USBPRINT\NCR_7198-xx4x_Receip5A85,NCR_7198xx4x_Label_Receipt
+"NCR 7199 Receipt" = 7199.GPD,USBPRINT\NCR_7199_Receipt6E67,NCR_7199_Receipt
+
+[NCR Corporation.NTamd64]
+"NCR K590 Self-Service" = K590.GPD,USBPRINT\NCRK590_Self-Service9E60,NCR_K590_Self-Service
+"NCR 7167 Receipt" = 7167R.GPD,USBPRINT\NCR_7167_Receipt_-_SA848,NCR_7167_Receipt
+"NCR 7167 Slip" = 7167S.GPD,USBPRINT\NCR_7167_Slip_-_SA848,NCR_7167_Slip
+"NCR 7168 Receipt" = 7168R.GPD,USBPRINT\NCR_7168_Receipt_-_SDEAB,NCR_7168_Receipt
+"NCR 7168 Slip" = 7168S.GPD,USBPRINT\NCR_7168_Slip_-_SDEAB,NCR_7168_Slip
+"NCR 7197 Receipt" = 7197.GPD,USBPRINT\NCR_7197_Receipt8C2B,NCR_7197_Receipt
+"NCR F306 Receipt" = F306.GPD,USBPRINT\NCR_F306_Receipt5D40,NCR_F306_Receipt
+"NCR F307 Receipt" = F307.GPD,USBPRINT\NCR_F307_Receipt474D,NCR_F307_Receipt
+"NCR F309 Receipt" = F309.GPD,USBPRINT\NCR_F309_2ST_ReceiptDAAF,NCR_F309_Receipt
+"NCR 7198 Receipt" = 7198R.GPD,USBPRINT\NCR_7198_2ST_Receipt44D9,NCR_7198_Receipt
+"NCR 7198xx4x Label Receipt" = 7198xx4xLR.GPD,USBPRINT\NCR_7198-xx4x_Receip5A85,NCR_7198xx4x_Label_Receipt
+"NCR 7199 Receipt" = 7199.GPD,USBPRINT\NCR_7199_Receipt6E67,NCR_7199_Receipt
+
+;
+; Installer section(s) referenced above.
+;
+
+[K590.GPD]
+CopyFiles=@K590.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=K590.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7167R.GPD]
+CopyFiles=@7167R.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7167R.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7167S.GPD]
+CopyFiles=@7167S.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7167S.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7168R.GPD]
+CopyFiles=@7168R.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7168R.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7168S.GPD]
+CopyFiles=@7168S.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7168S.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7197.GPD]
+CopyFiles=@7197.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7197.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7198xx4xLR.GPD]
+CopyFiles=@7198xx4xLR.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7198xx4xLR.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[F306.GPD]
+CopyFiles=@F306.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=F306.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[F307.GPD]
+CopyFiles=@F307.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=F307.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[F309.GPD]
+CopyFiles=@F309.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=F309.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7198R.GPD]
+CopyFiles=@7198R.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7198R.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[7199.GPD]
+CopyFiles=@7199.GPD
+CopyFiles=NCRPOSPTR_FILE
+DataSection=UNIDRV_BIDI_DATA
+DataFile=7199.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV_BIDI.OEM
+LanguageMonitor=%NCR_MONITOR%
+ncroemuni=%NCR_PLUGIN%
+
+[NCRPOSPTR_FILE]
+POSPTR.DLL
+NCR_RSD_LM.dll
+NCROEMUNI.INI
+NCROEMUNI.DLL
+
+[UNIDRV_BIDI_DATA]
+POSPTR.Dll
+LanguageMonitor=%NCR_MONITOR%
+
+[OEMUNI]
+ncroemuni.dll
+
+[DestinationDirs]
+DefaultDestDir=66000
+NCRPOSPTR_FILE=66000
+
+[SourceDisksNames.x86]
+1 = %disk1%,,,
+
+[SourceDisksNames.amd64]
+1 = %disk1%,,,
+
+[SourceDisksFiles]
+POSPTR.Dll = 1
+K590.GPD = 1
+NCR_RSD_LM.dll = 1
+ncroemuni.dll = 1
+7167R.GPD = 1
+7167S.GPD = 1
+7168R.GPD = 1
+7168S.GPD = 1
+7197.GPD = 1
+F306.GPD = 1
+F307.GPD = 1
+F309.GPD = 1
+7198R.GPD = 1
+7198xx4xLR.GPD = 1
+ncroemuni.ini= 1
+7199.GPD = 1
+
+
+[Strings]
+PrinterClassName="Printers"
+NCR="NCR Corporation"
+disk1="NCR Printer Driver Setup Disk"
+NCR_MONITOR="NCR RealPOS Language Monitor,NCR_RSD_LM.dll"
+NCR_PLUGIN = "NCR RealPOS Rendering Plugin,NCROEMUNI.DLL"
+
+

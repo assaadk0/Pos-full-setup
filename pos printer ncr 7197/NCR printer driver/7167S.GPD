@@ -1,0 +1,162 @@
+*%
+*% Copyright (c) NCR Corp. 2002-2010
+*% All Rights Reserved.
+*%
+*% 2/18/2008     Printable Area change
+
+*% 10/29/2008   TAR 390769 - Increased the printable Area.
+
+
+*GPDSpecVersion: "1.0"
+*Include: "StdNames.gpd"
+*GPDFileVersion: "5.0.1"
+*GPDFileName: "7167S.GPD"
+*ModelName: "NCR 7167 Slip"
+*MasterUnits: PAIR(140, 72)
+*ResourceDLL: "POSPTR.Dll"
+*PrinterType: SERIAL
+*FontCartSlots: 1
+*Feature: Orientation
+{
+    *rcNameID: =ORIENTATION_DISPLAY
+    *DefaultOption: PORTRAIT
+    *Option: PORTRAIT
+    {
+        *rcNameID: =PORTRAIT_DISPLAY
+    }
+    *Option: LANDSCAPE_CC270
+    {
+        *rcNameID: =LANDSCAPE_DISPLAY
+    }
+}
+*Feature: InputBin
+{
+    *rcNameID: =PAPER_SOURCE_DISPLAY
+    *DefaultOption: Option1
+    *Option: Option1
+    {
+        *rcNameID: 280
+        *OptionID: 280
+    }
+}
+*Feature: Resolution
+{
+    *rcNameID: =RESOLUTION_DISPLAY
+    *DefaultOption: Option1
+    *Option: Option1
+    {
+        *Name: "70 x 72 " =DOTS_PER_INCH
+        *DPI: PAIR(70, 72)
+        *TextDPI: PAIR(70, 72)
+        *PinsPerLogPass: 8
+        *PinsPerPhysPass: 8
+        *MinStripBlankPixels:72
+        EXTERN_GLOBAL: *StripBlanks: LIST(TRAILING)
+        *SpotDiameter: 100
+        *Command: CmdSendBlockData { *Cmd : "<1B>*<00>" %l{NumOfDataBytes} }
+    }
+    *Option: Option2
+    {
+        *Name: "140 x 72 " =DOTS_PER_INCH
+        *DPI: PAIR(140, 72)
+        *TextDPI: PAIR(140, 72)
+        *PinsPerLogPass: 8
+        *PinsPerPhysPass: 8
+        *MinStripBlankPixels:72
+        EXTERN_GLOBAL: *StripBlanks: LIST(TRAILING)
+        *SpotDiameter: 100
+        *Command: CmdSendBlockData { *Cmd : "<1B>*<01>" %l{NumOfDataBytes} }
+      }
+
+}
+*Feature: PaperSize
+{
+    *rcNameID: =PAPER_SIZE_DISPLAY
+    *DefaultOption: Option1
+    *Option: Option1
+    {
+        *rcNameID: 263
+        *OptionID: 263
+
+	*%Printable area change
+        *%*PageDimensions: PAIR(696, 3940)
+        *%*PrintableArea: PAIR(644, 3720)
+        *%*PrintableOrigin: PAIR(26, 114)
+
+        *PageDimensions: PAIR(490, 1440)
+       *%TAR 390769 Start - Increased the printable Area.
+        *PrintableArea: PAIR(454, 1352)
+      *%TAR 390769 End - Increased the printable Area.
+        *PrintableOrigin: PAIR(18, 45)
+
+    }
+}
+*Feature: Halftone
+{
+    *rcNameID: =HALFTONING_DISPLAY
+    *DefaultOption: HT_PATSIZE_AUTO
+    *Option: HT_PATSIZE_AUTO
+    {
+        *rcNameID: =HT_AUTO_SELECT_DISPLAY
+    }
+    *Option: HT_PATSIZE_SUPERCELL_M
+    {
+        *rcNameID: =HT_SUPERCELL_DISPLAY
+    }
+    *Option: HT_PATSIZE_6x6_M
+    {
+        *rcNameID: =HT_DITHER6X6_DISPLAY
+    }
+    *Option: HT_PATSIZE_8x8_M
+    {
+        *rcNameID: =HT_DITHER8X8_DISPLAY
+    }
+}
+*Command: CmdStartDoc
+{
+    *Order: DOC_SETUP.1
+    *Cmd: "<1B>@<1B>f<01031B>c0<041B>c4<00>"
+}
+*Command: CmdEndJob
+{
+    *Order: JOB_FINISH.1
+    *Cmd: "<0C>"
+}
+*RotateCoordinate?: FALSE
+*RotateRaster?: FALSE
+*RotateFont?: FALSE
+*TextCaps: LIST(TC_OP_CHARACTER,TC_EA_DOUBLE,TC_IA_ABLE,TC_UA_ABLE)
+*CursorXAfterCR: AT_CURSOR_X_ORIGIN
+*BadCursorMoveInGrxMode: LIST(Y_PORTRAIT,Y_LANDSCAPE)
+*YMoveAttributes: LIST(SEND_CR_FIRST)
+
+*%YMoveThreshold: *
+*YMoveUnit: 72
+*Command: CmdYMoveRelDown { *Cmd : "<1B>J" %c{DestYRel} }
+*%Command: CmdYMoveRelDown { *Cmd : "<1B>P" }
+
+*Command: CmdSetLineSpacing { *Cmd : "<1B>3" %c{LinefeedSpacing} }
+*Command: CmdCR { *Cmd : "<0D>" }
+*Command: CmdLF { *Cmd : "<0A>" }
+*Command: CmdFF { *Cmd : "<0C>" }
+*Command: CmdBackSpace { *Cmd : "<08>" }
+*EjectPageWithFF?: TRUE
+*OutputDataFormat: V_BYTE
+*OptimizeLeftBound?: FALSE
+*CursorXAfterSendBlockData: AT_GRXDATA_END
+*CursorYAfterSendBlockData: AUTO_INCREMENT
+*DefaultCTT: 1
+*DefaultFont: 9
+*switch: Orientation
+{
+    *case: PORTRAIT
+    {
+        *DeviceFonts: LIST(9,10)
+    }
+    *case: LANDSCAPE_CC270
+    {
+        *DeviceFonts: LIST(9)
+    }
+}
+*Command: CmdBoldOn { *Cmd : "<1B>E<01>" }
+*Command: CmdBoldOff { *Cmd : "<1B>E<00>" }
