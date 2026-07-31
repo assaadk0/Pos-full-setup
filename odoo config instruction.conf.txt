@@ -1,0 +1,29 @@
+open local odoo iot box webpage localhost:8069 .
+try to connect to the odoo remote database.
+it will say connecting without ever ending dont touche anything go to the next step.
+ 
+go to odoo iot box location enter the file called odoo.
+You will find the folowing 
+
+[iot.box]
+remote_server = https://fadmea.run-odoo.com
+token = ..........
+db_uuid = ..........
+iot_handlers_etag = ............
+
+you will need to add this line under remote server 
+db_name = UAT_Training
+
+example:
+
+[iot.box]
+remote_server = https://fadmea.run-odoo.com
+db_name = UAT_Training
+token = ..........
+db_uuid = ..........
+iot_handlers_etag = ............
+
+save and exit 
+
+after return to your odoo local host and hit the restart button on the top right and wait the device should connect
+
