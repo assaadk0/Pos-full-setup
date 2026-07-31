@@ -27,3 +27,7 @@ save and exit
 
 after return to your odoo local host and hit the restart button on the top right and wait the device should connect
 
+
+For the pos shortcut creat new shortcut from chrome then right click and add at the end of the Target field: --kiosk
+this shortcut can be put in the startup folder
+
