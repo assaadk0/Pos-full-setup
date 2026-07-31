@@ -1,3 +1,4 @@
 [submodule "Serial2KeyboardServiceCS"]
 	path = Serial2KeyboardServiceCS
 	url = https://github.com/assaadk0/Serial2KeyboardServiceCS.git
+	branch = master
